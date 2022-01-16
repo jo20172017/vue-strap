@@ -33,7 +33,7 @@ export default {
     okText: {type: String, default: 'Save changes'},
     small: {type: Boolean, default: false},
     title: {type: String, default: ''},
-    value: {type: Boolean, required: true},
+    modelValue: {type: Boolean, required: true},
     width: {default: null}
   },
   data () {
@@ -79,10 +79,10 @@ export default {
       }
     },
     val (val, old) {
-      this.$emit('input', val)
+      this.$emit('update:modelValue', val)
       if (old === null ? val === true : val !== old) this.transition = true
     },
-    value (val, old) {
+    modelValue (val, old) {
       if (val !== old) this.val = val
     }
   },
@@ -95,7 +95,7 @@ export default {
     }
   },
   mounted () {
-    this.val = this.value
+    this.val = this.modelValue
   }
 }
 </script>
